@@ -4,9 +4,6 @@ from .models import Category, Expense
 from .forms import ExpenseForm, CategoryForm
 
 def dashboard(request):
-    import os
-    db_url = os.getenv('DATABASE_URL', 'NOT FOUND')
-    print(f"DATABASE_URL starts with: {db_url[:20]}")
     category_id = request.GET.get('category', '')
     search = request.GET.get('search', '')
     active_category = None
