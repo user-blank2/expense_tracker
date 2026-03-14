@@ -1,0 +1,29 @@
+{% extends 'tracker/base.html' %}
+{% block title %}Delete Expense{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto text-center">
+    <p class="text-6xl mb-6">🗑️</p>
+    <h1 class="text-3xl font-bold mb-2">Delete this expense?</h1>
+    <p class="text-muted mb-2">You're about to delete:</p>
+    <p class="text-xl font-semibold text-white mb-1">{{ expense.title }}</p>
+    <p class="text-accent font-bold mb-1">${{ expense.amount }}</p>
+    <p class="text-muted mb-8">{{ expense.category.name }}</p>
+
+    <div class="bg-card border border-border rounded-2xl p-6">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="flex gap-3">
+                <button type="submit"
+                    class="flex-1 bg-red-500 text-white py-3 rounded-lg font-bold hover:bg-red-600 transition">
+                    Yes, delete it
+                </button>
+                <a href="{% url 'dashboard' %}"
+                    class="flex-1 text-center bg-border text-muted py-3 rounded-lg font-medium hover:bg-opacity-80 transition">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

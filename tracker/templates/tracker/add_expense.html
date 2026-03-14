@@ -1,0 +1,30 @@
+{% extends 'tracker/base.html' %}
+{% block title %}Add Expense{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto">
+    <h1 class="text-3xl font-bold mb-2">Add Expense</h1>
+    <p class="text-muted mb-8">Record a new expense</p>
+
+    <div class="bg-card border border-border rounded-2xl p-8">
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-muted mb-2">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ field.errors.0 }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit"
+                class="w-full bg-accent text-dark py-3 rounded-lg font-bold hover:opacity-90 transition">
+                Save Expense
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
